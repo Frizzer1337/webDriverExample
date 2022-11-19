@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -24,9 +25,8 @@ public class FilterTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() throws IOException {
-        System.setProperty("webdriver.chrome.driver",
-                new File("./src/main/resources/chromedriver.exe").getCanonicalPath());
         driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
     }
 
     @Test
