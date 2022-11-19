@@ -24,7 +24,7 @@ public class FilterTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setupBrowser() throws IOException {
+    public void setupBrowser(){
         driver = new ChromeDriver();
         WebDriverManager.chromedriver().setup();
     }
