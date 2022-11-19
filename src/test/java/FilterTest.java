@@ -52,28 +52,25 @@ public class FilterTest {
 
     @Test
     public void testSortAscendingByPrice() throws InterruptedException {
-        driver.get("https://store.vaporesso.com/collections/collections");
-        WebElement sortValue = driver.findElement(By.id("SortBy"));
-        Select select = new Select(sortValue);
-        select.selectByValue("price-ascending");
-        sortValue.submit();
+        driver.get("https://store.vaporesso.com/collections/collections?sort_by=price-ascending");
         List<WebElement> pricesSale = driver.findElements(By.className("price-item--sale"));
         List<WebElement> pricesRegular = driver.findElements(By.className("price-item--regular"));
         List<Double> pricesArray = new ArrayList<>();
         List<Double> regularPricesArray = new ArrayList<>();
         for (var price : pricesRegular){
-            if(!price.getText().isEmpty()){
+            if(!price.getText().isBlank()){
                 regularPricesArray.add(Double.valueOf(price.getText().replaceAll("[^\\d.]", "")));
             }
         }
 
         for(int i = 0; i < regularPricesArray.size(); i++){
-            if(!pricesSale.get(i).getText().isEmpty()){
+            if(!pricesSale.get(i).getText().isBlank()){
                 pricesArray.add(Double.valueOf(pricesSale.get(i).getText().replaceAll("[^\\d.]", "")));
             } else {
                 pricesArray.add(Double.valueOf(regularPricesArray.get(i)));
             }
         }
+        System.out.println(pricesArray);
         Assert.assertEquals(pricesArray,pricesArray.stream().sorted().collect(Collectors.toList()));
 
     }
