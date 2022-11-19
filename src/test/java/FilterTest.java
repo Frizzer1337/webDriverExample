@@ -11,6 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +23,9 @@ public class FilterTest {
     private WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
-    public void setupBrowser(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Prog\\chromedriver_win32\\chromedriver.exe");
+    public void setupBrowser() throws IOException {
+        System.setProperty("webdriver.chrome.driver",
+                new File("./src/main/resources/chromedriver.exe").getCanonicalPath());
         driver = new ChromeDriver();
     }
 
