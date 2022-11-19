@@ -25,7 +25,7 @@ public class FilterTest {
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() throws IOException {
         System.setProperty("webdriver.chrome.driver",
-                new File("/").getCanonicalPath());
+                new File("/chromedriver").getCanonicalPath());
         driver = new ChromeDriver();
     }
 
