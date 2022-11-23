@@ -67,7 +67,7 @@ public class FilterTest {
             if(!pricesSale.get(i).getText().isBlank()){
                 pricesArray.add(Double.valueOf(pricesSale.get(i).getText().replaceAll("[^\\d.]", "")));
             } else {
-                pricesArray.add(Double.valueOf(regularPricesArray.get(i)));
+                pricesArray.add(regularPricesArray.get(i));
             }
         }
         System.out.println(pricesArray);
